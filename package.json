@@ -1,10 +1,13 @@
 {
-  "name": "API-Shopping",
+  "name": "APIShopping",
   "version": "1.0.0",
   "description": "Api de estudos de4 Typescript, TypeORM, APi Restful",
   "main": "index.js",
   "repository": "https://github.com/juliofilizzola/api-shopping",
   "author": "Filizzola <juliofilizzola@hotmail.com>",
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/server.ts"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^17.0.22",
