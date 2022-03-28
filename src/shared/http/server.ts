@@ -1,4 +1,4 @@
-import app from './app/app';
+import app from '@shared/http/app/app';
 
 const port = 3333;
 

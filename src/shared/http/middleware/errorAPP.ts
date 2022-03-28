@@ -1,4 +1,4 @@
-import AppError from '../../errors/AppErros';
+import AppError from '@shared/errors/AppErros';
 import { NextFunction, Request, Response } from 'express';
 
 function errorAPP(
