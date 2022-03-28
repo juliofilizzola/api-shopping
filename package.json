@@ -6,7 +6,7 @@
   "repository": "https://github.com/juliofilizzola/api-shopping",
   "author": "Filizzola <juliofilizzola@hotmail.com>",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/server.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts"
   },
   "license": "MIT",
   "devDependencies": {
