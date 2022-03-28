@@ -1,5 +1,5 @@
-import app from './app';
+import app from './app/app';
 
-const port = 33333;
+const port = 3333;
 
-app.listen(port, () => {console.log('server on port %D'), port});
+app.listen(port, () => console.log('server on port %s', port));

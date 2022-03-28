@@ -1,9 +1,8 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import api from "../controller/ApiController";
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'Hello Dev!' });
-});
+router.get('/', api);
 
 export default router;
