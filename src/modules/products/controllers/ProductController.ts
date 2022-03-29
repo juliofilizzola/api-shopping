@@ -15,6 +15,7 @@ class ProductController {
 
   public async show(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
+
     const showProduct = new ShowProductService();
     const product = await showProduct.execute(id);
 
