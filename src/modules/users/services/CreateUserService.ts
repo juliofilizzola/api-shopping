@@ -5,12 +5,7 @@ import User from '../typeorm/entities/Users';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 
 class CreateUserService {
-  public async execute({
-    name,
-    email,
-    password,
-    avatar,
-  }: IUser): Promise<User> {
+  public async execute({ name, email, password }: IUser): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository);
     const userExists = await usersRepository.findByName(email);
     if (userExists) {
@@ -22,7 +17,6 @@ class CreateUserService {
     const user = usersRepository.create({
       password: bPassword,
       name,
-      avatar,
       email,
     });
 
