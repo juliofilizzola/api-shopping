@@ -7,13 +7,16 @@
   "repository": "https://github.com/juliofilizzola/api-shopping",
   "author": "Filizzola <juliofilizzola@hotmail.com>",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix"
+    "lint-fix": "eslint . --ext .ts --fix",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.9",
+    "@types/joi": "^17.2.3",
     "@types/node": "^14.14.10",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
@@ -22,14 +25,16 @@
     "eslint-plugin-prettier": "^3.2.0",
     "prettier": "^2.2.1",
     "ts-node-dev": "^1.0.0",
+    "tsconfig-paths": "^3.14.1",
     "typescript": "^4.1.2"
   },
   "dependencies": {
+    "celebrate": "^15.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
-    "pg": "^8.5.1",
+    "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.29"
+    "typeorm": "0.2.29"
   }
 }

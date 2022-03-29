@@ -1,8 +1,8 @@
-import { Router } from "express";
-import api from "../controller/ApiController";
+import { Router } from 'express';
+import productRouter from '@modules/products/router/product.routes';
 
 const router = Router();
 
-router.get('/', api);
+router.use('/product', productRouter);
 
 export default router;
