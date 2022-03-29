@@ -17,6 +17,16 @@ class UsersRepository extends Repository<User> {
     const findId = await this.findById(id);
     return findId;
   }
+
+  public async findEmail(email: string): Promise<User | undefined> {
+    const userEmail = await this.findOne({
+      where: {
+        email,
+      },
+    });
+
+    return userEmail;
+  }
 }
 
 export default UsersRepository;
