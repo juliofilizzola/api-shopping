@@ -1,3 +1,5 @@
+import User from '@modules/users/typeorm/entities/Users';
+
 export interface IUser {
   name: string;
   email: string;
@@ -11,4 +13,14 @@ export interface IUserUpdate {
   email: string;
   password: string;
   avatar?: string;
+}
+
+export interface IRequestLogin {
+  email: string;
+  password: string;
+}
+
+export interface IResponseLogin {
+  token: string;
+  user: User;
 }
