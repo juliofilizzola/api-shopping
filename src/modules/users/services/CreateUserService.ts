@@ -7,7 +7,7 @@ import UsersRepository from '../typeorm/repositories/UsersRepository';
 class CreateUserService {
   public async execute({ name, email, password }: IUser): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository);
-    const userExists = await usersRepository.findByName(email);
+    const userExists = await usersRepository.findEmail(email);
     if (userExists) {
       throw new AppError('There is already email!');
     }
