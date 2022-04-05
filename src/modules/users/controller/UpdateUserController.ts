@@ -1,18 +1,16 @@
 import { Request, Response } from 'express';
-import UpdateUserService from '../services/UpdateAvatarUserSerice';
+import UpdateUserService from '../services/UpdateUserService';
 
 class UpdateUserController {
-  public async update(req: Request, res: Response): Promise<Response> {
+  public async execute(req: Request, res: Response): Promise<Response> {
     const userService = new UpdateUserService();
-    const { name, email, password, avatar } = req.body;
+    const { name, email } = req.body;
     const { id } = req.params;
 
     const user = await userService.execute({
       id,
       name,
       email,
-      password,
-      avatar,
     });
 
     return res.json(user);

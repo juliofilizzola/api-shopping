@@ -6,10 +6,14 @@ export interface IUser {
   password: string;
 }
 
-export interface IUpudateUSer {
+export interface IUpdateUser {
   id: string;
   name?: string;
   email?: string;
+}
+
+export interface IUpdateAvatarUser {
+  id: string;
   avatar: string;
 }
 
