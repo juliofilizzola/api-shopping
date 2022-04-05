@@ -1,6 +1,7 @@
-import auth from '@config/auth';
+import { IdecodeToken } from '@shared/dto/IsAuthenticated';
 import AppError from '@shared/errors/AppErros';
 import { NextFunction, Request, Response } from 'express';
+import { request } from 'http';
 import { verify } from 'jsonwebtoken';
 
 class IsAuthenticated {
@@ -18,9 +19,13 @@ class IsAuthenticated {
 
     try {
       const decodeToken = verify(token, secret);
-      if (decodeToken) {
-        next();
-      }
+      const { sub } = decodeToken as IdecodeToken;
+
+      req.user = {
+        id: sub,
+      };
+
+      next();
     } catch (error: any) {
       throw new AppError(error.messaging);
     }
