@@ -12,8 +12,16 @@ export default class SessionsController {
       password,
     });
 
+    const userReturn = {
+      name: user.name,
+      id: user.id,
+      email: user.email,
+      created_at: user.created_at,
+      updated_at: user.updated_at,
+    };
+
     return res.json({
-      user,
+      userReturn,
       token,
     });
   }
