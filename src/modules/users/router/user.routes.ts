@@ -3,9 +3,15 @@ import isAuthenticated from '@shared/http/middleware/isAuthenticated';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import multer from 'multer';
-import UserController from '../controller/UserController';
+import CreateUserController from '../controller/CreateUserController';
+import ShowUserController from '../controller/ShowUserController';
+import UpdateAvatarUserController from '../controller/UpdateAvatarUserController';
+import UpdateUserController from '../controller/UpdateUserController';
 
-const userController = new UserController();
+const UpdateAvatarUser = new UpdateAvatarUserController();
+const UpdateUser = new UpdateUserController();
+const ShowUser = new ShowUserController();
+const CreateUser = new CreateUserController();
 const userRouter = Router();
 const up = multer(upload);
 
@@ -18,10 +24,17 @@ userRouter.post(
       password: Joi.string().required(),
     },
   }),
-  userController.create,
+  CreateUser.execute,
 );
 
-userRouter.get('/show', isAuthenticated.index, userController.index);
+userRouter.get('/show', isAuthenticated.index, ShowUser.execute);
+
+userRouter.patch(
+  '/avatar',
+  isAuthenticated.index,
+  up.single('avatar'),
+  UpdateAvatarUser.execute,
+);
 
 userRouter.put(
   '/update',
@@ -31,9 +44,7 @@ userRouter.put(
       email: Joi.string().email(),
     },
   }),
-  isAuthenticated.index,
-  up.single('avatar'),
-  userController.update,
+  UpdateUser.execute,
 );
 
 export default userRouter;
