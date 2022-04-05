@@ -1,4 +1,4 @@
-import { IUserUpdate } from '@modules/dto/User';
+import { IUpudateUSer } from '@modules/dto/User';
 import AppError from '@shared/errors/AppErros';
 import { getCustomRepository } from 'typeorm';
 import User from '../typeorm/entities/Users';
@@ -9,27 +9,24 @@ class UpdateUserService {
     id,
     name,
     email,
-    password,
     avatar,
-  }: IUserUpdate): Promise<User> {
+  }: IUpudateUSer): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository);
-    const user = await usersRepository.findOne({ id });
+    const user = await usersRepository.findById(id);
 
     if (!user) {
-      throw new AppError('Product not found');
+      throw new AppError('user not found');
     }
 
-    const userEmail = await usersRepository.findByName(name);
+    if (email) {
+      const emailExist = await usersRepository.findEmail(email);
+      if (emailExist) throw new AppError('Email já utilizado');
 
-    if (userEmail && user.id !== id) {
-      throw new AppError('There is already onde product with this name');
+      user.email = email;
     }
 
-    const bPassword = password.concat('senha misteriosa');
-    user.name = name;
-    user.email = email;
+    user.name = (name && name) || user.name;
     user.avatar = avatar || '';
-    user.password = bPassword;
 
     await usersRepository.save(user);
 

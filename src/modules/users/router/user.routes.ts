@@ -20,4 +20,16 @@ userRouter.post(
 
 userRouter.get('/show', isAuthenticated.index, userController.index);
 
+userRouter.put(
+  '/update',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email(),
+    },
+  }),
+  isAuthenticated.index,
+  userController.update,
+);
+
 export default userRouter;

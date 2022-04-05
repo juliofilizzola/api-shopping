@@ -4,15 +4,13 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  avatar?: string;
 }
 
-export interface IUserUpdate {
+export interface IUpudateUSer {
   id: string;
-  name: string;
-  email: string;
-  password: string;
-  avatar?: string;
+  name?: string;
+  email?: string;
+  avatar: string;
 }
 
 export interface IRequestLogin {

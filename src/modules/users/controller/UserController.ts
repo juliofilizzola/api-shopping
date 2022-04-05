@@ -18,15 +18,14 @@ class UserController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const userService = new UpdateUserService();
-    const { name, email, password, avatar } = req.body;
-    const { id } = req.params;
+    const updateUser = new UpdateUserService();
+    const { name, email, avatar } = req.body;
+    const { id } = req.user;
 
-    const user = await userService.execute({
+    const user = await updateUser.execute({
       id,
       name,
       email,
-      password,
       avatar,
     });
 
