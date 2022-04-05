@@ -1,7 +1,6 @@
 import { IdecodeToken } from '@shared/dto/IsAuthenticated';
 import AppError from '@shared/errors/AppErros';
 import { NextFunction, Request, Response } from 'express';
-import { request } from 'http';
 import { verify } from 'jsonwebtoken';
 
 class IsAuthenticated {
