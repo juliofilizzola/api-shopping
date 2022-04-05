@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import productRouter from '@modules/products/router/product.routes';
 import userRouter from '@modules/users/router/user.routes';
-import sessionsRouter from '@modules/users/router/sessions.routes';
+import sessionsRouter from '@modules/sessions/router/sessions.routes';
 
 const router = Router();
 
