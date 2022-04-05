@@ -1,3 +1,4 @@
+import auth from '@config/auth';
 import { IRequestLogin, IResponseLogin } from '@modules/dto/User';
 import statusCode from '@modules/utils/statusCode';
 import AppError from '@shared/errors/AppErros';
@@ -24,11 +25,11 @@ class CreateSessionsServicies {
       throw new AppError('Incorrect Datas', statusCode.unauthorized);
     }
 
-    const secret = process.env.SECRET_TOKEN || '';
+    const secret = auth.jwt.secret || '';
 
     const token = sign({ user: user.id }, secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: auth.jwt.expiresIn,
     });
 
     return {
