@@ -5,7 +5,7 @@ import AppError from '@shared/errors/AppErros';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { getCustomRepository } from 'typeorm';
-import UsersRepository from '../typeorm/repositories/UsersRepository';
+import UsersRepository from '../../users/typeorm/repositories/UsersRepository';
 
 class CreateSessionsServicies {
   public async execute({
