@@ -12,7 +12,6 @@ class IsAuthenticated {
     }
 
     const [, token] = authorization.split(' ');
-    console.log(token);
 
     const secret = process.env.SECRET_TOKEN || 'x';
 
