@@ -1,5 +1,8 @@
+import upload from '@config/upload';
 import { IUpudateUSer } from '@modules/dto/User';
 import AppError from '@shared/errors/AppErros';
+import { stat, unlink } from 'fs/promises';
+import path from 'path';
 import { getCustomRepository } from 'typeorm';
 import User from '../typeorm/entities/Users';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
@@ -26,8 +29,16 @@ class UpdateUserService {
     }
 
     user.name = (name && name) || user.name;
-    user.avatar = avatar || '';
 
+    if (user.avatar) {
+      const userAvatarPath = path.join(upload.directory, user.avatar);
+      const userAvatarExist = await stat(userAvatarPath);
+      if (userAvatarExist) {
+        await unlink(userAvatarPath);
+      }
+    }
+
+    user.avatar = avatar;
     await usersRepository.save(user);
 
     return user;
