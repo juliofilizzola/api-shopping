@@ -1,3 +1,4 @@
+import isAuthenticated from '@shared/http/middleware/isAuthenticated';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import UserController from '../controller/UserController';
@@ -17,6 +18,6 @@ userRouter.post(
   userController.create,
 );
 
-userRouter.get('/show', userController.index);
+userRouter.get('/show', isAuthenticated.index, userController.index);
 
 export default userRouter;
