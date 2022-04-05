@@ -1,11 +1,19 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
-import ProductController from '../controllers/ProductController';
+import CreateProductController from '../controllers/CreateProductController';
+import ListProductController from '../controllers/ListProductController';
+import DeleteProductController from '../controllers/DeleteProductController';
+import ShowProductController from '../controllers/ShowProductController';
+import UpdateProductCrontoller from '../controllers/UpdateProductController';
 
 const productRouter = Router();
-const productController = new ProductController();
+const CreateProduct = new CreateProductController();
+const ListProduct = new ListProductController();
+const UpdateProduct = new UpdateProductCrontoller();
+const ShowProduct = new ShowProductController();
+const DeleteProduct = new DeleteProductController();
 
-productRouter.get('/', productController.index);
+productRouter.get('/', ListProduct.execute);
 
 productRouter.get(
   '/:id',
@@ -14,7 +22,7 @@ productRouter.get(
       id: Joi.string().uuid().required(),
     },
   }),
-  productController.show,
+  ShowProduct.execute,
 );
 
 productRouter.post(
@@ -26,8 +34,9 @@ productRouter.post(
       price: Joi.number().required(),
     },
   }),
-  productController.create,
+  CreateProduct.execute,
 );
+
 productRouter.put(
   '/:id',
   celebrate({
@@ -40,8 +49,9 @@ productRouter.put(
       price: Joi.number().required(),
     },
   }),
-  productController.update,
+  UpdateProduct.execute,
 );
+
 productRouter.delete(
   '/:id',
   celebrate({
@@ -49,7 +59,7 @@ productRouter.delete(
       id: Joi.string().uuid().required(),
     },
   }),
-  productController.delete,
+  DeleteProduct.execute,
 );
 
 export default productRouter;
