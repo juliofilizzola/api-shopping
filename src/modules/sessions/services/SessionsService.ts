@@ -26,11 +26,11 @@ class SessionsServicies {
     }
 
     const secret = auth.jwt.secret || '';
-
     const token = sign({ user: user.id }, secret, {
       subject: user.id,
       expiresIn: auth.jwt.expiresIn,
     });
+    console.log('jhhjh');
 
     return {
       user,
@@ -38,5 +38,4 @@ class SessionsServicies {
     };
   }
 }
-
 export default SessionsServicies;
