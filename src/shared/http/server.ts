@@ -1,5 +1,5 @@
 import app from '@shared/http/app/app';
 
-const port = 3333;
+const port = process.env.PORT;
 
 app.listen(port, () => console.log('server on port %s', port));

@@ -13,10 +13,10 @@ const UpdateProduct = new UpdateProductCrontoller();
 const ShowProduct = new ShowProductController();
 const DeleteProduct = new DeleteProductController();
 
-productRouter.get('/', ListProduct.execute);
+productRouter.get('/list', ListProduct.execute);
 
 productRouter.get(
-  '/:id',
+  '/show/:id',
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
@@ -38,7 +38,7 @@ productRouter.post(
 );
 
 productRouter.put(
-  '/:id',
+  '/update/:id',
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
@@ -53,7 +53,7 @@ productRouter.put(
 );
 
 productRouter.delete(
-  '/:id',
+  '/delete/:id',
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
